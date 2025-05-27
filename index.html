@@ -1,48 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dannielle Marvic Banaban | Web Developer</title>
-    <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dannielle | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="images/DMB - Logo.png" type="image/x-icon" />
 </head>
 <body>
-    <header>
-        <h1>Dannielle Marvic Banaban</h1>
-        <p>Web Developer • Computer Engineering Graduate</p>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm Dannielle, a Computer Engineering graduate passionate about building smart,
-            useful apps and tools on the web. I've worked on hardware-software systems
-        and now focus on becoming a full-stack developer!</p>
-        <ul>
-            <li>Python, JavaScript, HTML, CSS</li>
-            <li>Yolov5, OpenCV</li>
-            <li>Raspberry Pi, Arduino, GSM Modules</li>
-        </ul>
+  <header>
+    <div class="logo">
+        <img src="images/DMB - Transparent.png" alt="Dannielle Logo" />
+    </div>
+
+    <div class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="nav-menu" role="navigation" aria-label="Primary Navigation">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <h1>Hi, I’m Dannielle</h1>
+      <p>Computer Engineering Graduate | Aspiring Web Developer & Software Engineer</p>
     </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <p>Coming soon: Weather App, QR Generator, and more.</p>
-    </section>
+    <div class="projects">
+        <a href="https://github.com/Dannielleeee28/weather-app" target="_blank" rel="noopener noreferrer" class="project-card">
+            <h3>Weather App</h3>
+            <p>A clean, responsive weather app using HTML, CSS, and JavaScript to fetch live weather data.</p>
+        </a>
+        <a href="https://github.com/Dannielleeee28/university-map" target="_blank" rel="noopener noreferrer" class="project-card">
+            <h3>Interactive University Map</h3>
+            <p>Software design project featuring an interactive map with zoom and pathfinding features.</p>
+        </a>
+        <a href="https://github.com/Dannielleeee28/smart-scarecrow" target="_blank" rel="noopener noreferrer" class="project-card">
+            <h3>Robotic Scarecrow System</h3>
+            <p>A solar-powered scarecrow with YOLOv5 object detection and SMS notifications for rice farmers.</p>
+        </a>
+    </div>
+
 
     <section id="contact">
-        <h2>Contact</h2>
-        <p>📧 officialdannielle@gmail.com</p>
-        <p>🔗 <a href="https://www.linkedin.com/in/danniellemarvicbanaban/" target="_blank">LinkedIn</a>
-        | <a href="https://github.com/Dannielleeee28" target="_blank">Github</a></p>
+      <h2 class="section-title">Contact Me</h2>
+      <form class="contact-form" id="contact-form" aria-label="Contact form">
+        <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true" />
+        <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true" />
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required aria-required="true"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
     </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2025 Dannielle Marvic Banaban</p>
-    </footer>
+  <footer>
+    &copy; 2025 Dannielle Banaban. All rights reserved.
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
