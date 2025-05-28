@@ -1,114 +1,127 @@
-// Responsive Navigation Toggle
 const navToggle = document.getElementById('nav-toggle');
 const navMenu = document.getElementById('nav-menu');
 
 navToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('open');
+  navMenu.classList.toggle('show');
 });
 
-// Close nav on link click (mobile)
-document.querySelectorAll('.nav-link').forEach(link => {
+document.querySelectorAll('#nav-menu a.nav-link').forEach(link => {
   link.addEventListener('click', () => {
-    navMenu.classList.remove('open');
+    navMenu.classList.remove('show');
   });
 });
 
-// Typing Effect
-const typedText = document.getElementById('typed');
-const words = [
-  "Hi, I'm Dannielle,",
-  'Web Developer.',
-  'Software Engineer.',
-  'Tech Enthusiast.',
-  'Problem Solver.',
-  'Creative Coder.'
+const typedElement = document.getElementById('typed-role');
+const roles = [
+  'a passionate Web Developer',
+  'a curious Programmer',
+  'a tech enthusiast',
+  'a problem solver',
+  'pogi'
 ];
-let wordIndex = 0;
+let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
+const typingSpeed = 100;
+const deletingSpeed = 50;
+const delayBetweenRoles = 1500;
 
 function type() {
-  const current = words[wordIndex];
-  if (isDeleting) {
-    typedText.textContent = current.substring(0, charIndex--);
+  if (!typedElement) return;
+  
+  const currentRole = roles[roleIndex];
+  
+  if (!isDeleting) {
+    typedElement.textContent = currentRole.substring(0, charIndex + 1);
+    charIndex++;
+    if (charIndex === currentRole.length) {
+      isDeleting = true;
+      setTimeout(type, delayBetweenRoles);
+      return;
+    }
   } else {
-    typedText.textContent = current.substring(0, charIndex++);
+    typedElement.textContent = currentRole.substring(0, charIndex - 1);
+    charIndex--;
+    if (charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }
   }
-
-  if (!isDeleting && charIndex === current.length) {
-    isDeleting = true;
-    setTimeout(type, 1000);
-  } else if (isDeleting && charIndex === 0) {
-    isDeleting = false;
-    wordIndex = (wordIndex + 1) % words.length;
-    setTimeout(type, 300);
-  } else {
-    setTimeout(type, isDeleting ? 50 : 120);
-  }
+  setTimeout(type, isDeleting ? deletingSpeed : typingSpeed);
 }
-if (typedText) type();
+type();
 
-// Project Slider & Pagination
 const projectWrapper = document.querySelector('.project-wrapper');
-const projectCards = document.querySelectorAll('.project-card');
+const projects = document.querySelectorAll('.project-card');
 const prevBtn = document.getElementById('prev-page');
 const nextBtn = document.getElementById('next-page');
-
-const projectsPerPage = 2;
-const totalPages = Math.ceil(projectCards.length / projectsPerPage);
+const cardsPerPage = 2;
 let currentPage = 1;
+const totalPages = Math.ceil(projects.length / cardsPerPage);
 
-// Scroll to page function
-function scrollToPage(page) {
-  const cardWidth = projectCards[0].offsetWidth + parseInt(getComputedStyle(projectCards[0]).marginRight);
-  projectWrapper.scrollTo({
-    left: (page - 1) * (cardWidth * projectsPerPage + 24), // 24px from gap (1.5rem approx)
-    behavior: 'smooth',
-  });
+function showProjectsPage(page) {
+  if (page < 1) page = totalPages;
+  if (page > totalPages) page = 1;
   currentPage = page;
-  updateButtons();
-}
 
-// Update buttons disabled state
-function updateButtons() {
-  prevBtn.disabled = currentPage === 1;
-  nextBtn.disabled = currentPage === totalPages;
-  prevBtn.style.opacity = prevBtn.disabled ? '0.4' : '1';
-  nextBtn.style.opacity = nextBtn.disabled ? '0.4' : '1';
+  projects.forEach((project, i) => {
+    project.style.display = 'none';
+    if (i >= (page - 1) * cardsPerPage && i < page * cardsPerPage) {
+      project.style.display = 'flex';
+    }
+  });
 }
 
 prevBtn.addEventListener('click', () => {
-  if (currentPage > 1) {
-    scrollToPage(currentPage - 1);
-  }
+  showProjectsPage(currentPage - 1);
 });
 
 nextBtn.addEventListener('click', () => {
-  if (currentPage < totalPages) {
-    scrollToPage(currentPage + 1);
-  }
+  showProjectsPage(currentPage + 1);
 });
 
-updateButtons();
+showProjectsPage(currentPage);
 
-// Prevent page scroll when mouse inside project-wrapper, allow horizontal scroll of projects
-projectWrapper.addEventListener('wheel', e => {
-  if (e.deltaY !== 0) {
-    e.preventDefault();
-    projectWrapper.scrollLeft += e.deltaY;
-  }
-}, { passive: false });
+const contactForm = document.getElementById('contact-form');
+const formResponse = document.getElementById('form-response');
 
-// Contact Form (EmailJS)
-document.getElementById('contact-form').addEventListener('submit', function (e) {
+contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  emailjs.sendForm('service_schtq6y', 'template_yg6e585', this, 'PlcxN_UlYvbT9JjWR')
+  const serviceID = 'service_schtq6y';
+  const templateID = 'template_yg6e585'; 
+
+  emailjs.sendForm(serviceID, templateID, contactForm)
     .then(() => {
-      alert('Thanks for reaching out! I will get back to you soon.');
-      this.reset();
-    }, (error) => {
-      console.error('EmailJS Error:', error);
-      alert('Oops! Something went wrong. Please try again.');
+      formResponse.style.color = '#ffff';
+      formResponse.textContent = 'Message sent successfully! Thank you.';
+      contactForm.reset();
+    }, (err) => {
+      formResponse.style.color = 'red';
+      formResponse.textContent = 'Oops! Something went wrong, please try again.';
+      console.error('EmailJS error:', err);
     });
+});
+
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('nav a.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  const scrollY = window.pageYOffset;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80;
+    const sectionHeight = section.clientHeight;
+    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      current = section.getAttribute('id');
+    }
+  });
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
 });

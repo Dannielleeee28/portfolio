@@ -3,10 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dannielle | Innovative with every line.</title>
+  <title>Dannielle • Innovative with every line.</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="images/DMB - Logo.png" type="image/x-icon" />
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("PlcxN_UlYvbT9JjWR");
+    })();
+  </script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
 </head>
 <body>
 
@@ -14,68 +22,131 @@
     <div class="logo">
       <img src="images/DMB - Transparent.png" alt="Dannielle Logo" />
     </div>
-
-    <div class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" role="button" tabindex="0">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="nav-toggle" id="nav-toggle">
+      <span></span><span></span><span></span>
     </div>
-
-    <nav id="nav-menu" role="navigation" aria-label="Primary Navigation">
-      <a href="#home" class="nav-link">Home</a>
+    <nav id="nav-menu">
+      <a href="#hero" class="nav-link">Home</a>
+      <a href="#about" class="nav-link">About</a>
       <a href="#projects" class="nav-link">Projects</a>
       <a href="#contact" class="nav-link">Contact</a>
+      <a href="#" id="theme-toggle" class="nav-link"><i class="fa-solid fa-circle-half-stroke"></i></a>
     </nav>
   </header>
 
-  <div class="overlay" id="overlay"></div>
+  <section class="hero" id="hero">
+    <h1>
+      Hi, I'm Dannielle, <span id="typed-role"></span>
+    </h1>
+    <p>Let's build something amazing together.</p>
+  </section>
 
-  <main>
-    <section id="home" class="hero snap-section">
-      <h1> <span id="typed"></span></h1>
-      <p>Innovative with every line.</p>
-      <p>Computer Engineering Graduate | Aspiring Web Developer & Software Engineer</p>
-    </section>
+  <section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+      <img
+        src="images/BANABAN, DANNIELLE MARVIC H. (4TH).jpg"
+        alt="Dannielle"
+        class="about-avatar"
+      />
+      <p>
+        I'm Dannielle, a passionate Web Developer and Software Engineer based in the Philippines.
+        I enjoy building clean, creative, and functional web apps. I'm driven by curiosity and a love
+        for solving real-world problems through code.
+      </p>
+    </div>
+  </section>
 
-    <section id="projects" class="snap-section">
-      <h2 class="section-title">Projects</h2>
-      <div class="project-wrapper" id="project-wrapper">
-        <a href="https://github.com/Dannielleeee28/weather-app" target="_blank" class="project-card">
-          <h3>Weather App</h3>
-          <p>A clean, responsive weather app using HTML, CSS, and JavaScript to fetch live weather data.</p>
-        </a>
-        <a href="https://github.com/Dannielleeee28/university-map" target="_blank" class="project-card">
-          <h3>Interactive University Map</h3>
-          <p>Software design project featuring an interactive map with zoom and pathfinding features.</p>
-        </a>
-        <a href="https://github.com/Dannielleeee28/smart-scarecrow" target="_blank" class="project-card">
-          <h3>Robotic Scarecrow System</h3>
-          <p>A solar-powered scarecrow with YOLOv5 object detection and SMS notifications for rice farmers.</p>
-        </a>
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-wrapper">
+      <div class="project-card">
+        <h3>Weather App</h3>
+        <p>A clean weather app that fetches real-time data via OpenWeather API.</p>
+        <div class="tech-icons">
+          <i class="fab fa-html5"></i>
+          <i class="fab fa-js"></i>
+          <i class="fab fa-css3-alt"></i>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Dannielleeee28/weather-app" target="_blank"
+            >GitHub</a
+          >
+          <a href="https://dannielleeee28.github.io/weather-app/" target="_blank"
+            >Live Demo</a
+          >
+        </div>
       </div>
-      <div class="pagination">
-        <button id="prev-page" aria-label="Previous projects page">‹</button>
-        <button id="next-page" aria-label="Next projects page">›</button>
-      </div>
-    </section>
 
-    <section id="contact" class="snap-section">
-      <h2 class="section-title">Contact Me</h2>
-      <form class="contact-form" id="contact-form">
-        <input type="text" name="user_name" placeholder="Your Name" required />
-        <input type="email" name="user_email" placeholder="Your Email" required />
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-        <p class="form-status" id="form-status"></p>
-      </form>
-    </section>
-  </main>
+      <div class="project-card">
+        <h3>University Interactive Map System</h3>
+        <p>
+          An interactive campus map system built as part of our Software Design
+          project.
+        </p>
+        <div class="tech-icons">
+          <i class="fab fa-html5"></i>
+          <i class="fab fa-js"></i>
+          <i class="fab fa-css3-alt"></i>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Dannielleeee28/university-map" target="_blank"
+            >GitHub</a
+          >
+          <a href="https://dannielleeee28.github.io/university-map/" target="_blank"
+            >Live Demo</a
+          >
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Robotic Smart Scarecrow System</h3>
+        <p>
+          A solar-powered, Raspberry Pi-based robotic scarecrow designed to monitor
+          rice maturity using computer vision (YOLOv5) and deter birds through motion
+          and sound, with real-time alerts via GSM SMS notifications.
+        </p>
+        <div class="tech-icons">
+          <i class="fab fa-html5"></i>
+          <i class="fab fa-js"></i>
+          <i class="fab fa-css3-alt"></i>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/Dannielleeee28/smart-scarecrow" target="_blank"
+            >GitHub</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+      <button id="prev-page">&#8249;</button>
+      <button id="next-page">&#8250;</button>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+    <form class="contact-form" id="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+      <p class="form-response" id="form-response"></p>
+    </form>
+  </section>
 
   <footer>
-    &copy; 2025 Dannielle Marvic Banaban | Innovative with every line. All rights reserved.
+    <div class="footer-socials">
+      <a href="https://github.com/Dannielleeee28" target="_blank"
+        ><i class="fab fa-github"></i
+      ></a>
+      <a href="https://www.linkedin.com/in/danniellemarvicbanaban/" target="_blank"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+    </div>
+    <p>Dannielle • Innovative with every line © 2025</p>
   </footer>
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
 </html>
